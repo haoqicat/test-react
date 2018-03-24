@@ -1,5 +1,15 @@
-import { sum } from './index'
+import { getTotal, getCartProducts } from './index'
 
-it('should return sum', () => {
-  expect(sum(1, 1)).toBe(2)
+describe('selectors', () => {
+  describe('getTotal', () => {
+    it('should return price total', () => {
+      expect(getTotal()).toBe(10)
+    })
+  })
+
+  describe('getCartProducts', () => {
+    it('should return products ', () => {
+      expect(getCartProducts()).toBe('products')
+    })
+  })
 })

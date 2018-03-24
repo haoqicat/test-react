@@ -20,11 +20,23 @@ const setup = product => {
   }
 }
 
-it('should call action on button click', () => {
-  const { button, actions } = setup({
-    title: 'Product 1',
-    price: 9.99
+let productProps
+
+describe('ProductItem component', () => {
+  beforeEach(() => {
+    productProps = {
+      title: 'Product 1',
+      price: 9.99
+    }
   })
-  button.simulate('click')
-  expect(actions.onAddToCartClicked).toBeCalled()
+  it('should render Add To Cart message', () => {
+    const { button } = setup(productProps)
+    expect(button.text()).toMatch(/^Add to cart/)
+  })
+
+  it('should call action on button click', () => {
+    const { button, actions } = setup(productProps)
+    button.simulate('click')
+    expect(actions.onAddToCartClicked).toBeCalled()
+  })
 })

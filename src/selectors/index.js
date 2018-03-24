@@ -1,1 +1,2 @@
-export const sum = (a, b) => a + b
+export const getTotal = () => 10
+export const getCartProducts = () => 'products'
