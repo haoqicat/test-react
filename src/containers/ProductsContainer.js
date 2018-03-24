@@ -2,14 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ProductItem from '../components/ProductItem'
 import ProductList from '../components/ProductList'
+import { addToCart } from '../actions'
 
-const ProductsContainer = ({ products }) => (
+const ProductsContainer = ({ products, addToCart }) => (
   <ProductList title="商品列表">
     {products.map(product => (
       <ProductItem
         key={product.id}
         product={product}
-        onAddToCartClicked={() => console.log('add me to cart')}
+        onAddToCartClicked={() => addToCart(product.id)}
       />
     ))}
   </ProductList>
@@ -19,4 +20,4 @@ const mapStateToProps = state => ({
   products: state.products
 })
 
-export default connect(mapStateToProps)(ProductsContainer)
+export default connect(mapStateToProps, { addToCart })(ProductsContainer)

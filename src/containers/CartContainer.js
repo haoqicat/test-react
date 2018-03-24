@@ -1,6 +1,28 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { getTotal, getCartProducts } from '../selectors'
 import Cart from '../components/Cart'
 
-const CartContainer = props => <Cart {...props} />
+const CartContainer = ({ products, total }) => (
+  <Cart products={products} total={total} />
+)
 
-export default CartContainer
+CartContainer.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired
+    })
+  ).isRequired,
+  total: PropTypes.number
+}
+
+const mapStateToProps = state => ({
+  products: getCartProducts(state),
+  total: getTotal(state)
+})
+
+export default connect(mapStateToProps)(CartContainer)
