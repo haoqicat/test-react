@@ -6,7 +6,11 @@ import ProductList from '../components/ProductList'
 const ProductsContainer = ({ products }) => (
   <ProductList title="商品列表">
     {products.map(product => (
-      <ProductItem key={product.id} product={product} />
+      <ProductItem
+        key={product.id}
+        product={product}
+        onAddToCartClicked={() => console.log('add me to cart')}
+      />
     ))}
   </ProductList>
 )
